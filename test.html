@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>TEST</title>
+  </head>
+  <body>
+    <form>
+      <label>
+        숫자1:
+        <input type="text" id="num1" />
+      </label>
+      <label>
+        숫자2:
+        <input type="text" id="num2" />
+      </label>
+      <input type="button" onclick="test()" value="submit" />
+    </form>
+    <ul id="test2"></ul>
+
+    <script>
+      const NUM1 = document.getElementById("num1");
+      const NUM2 = document.getElementById("num2");
+      const test2 = document.getElementById("test2");
+
+      function test() {
+        const li = document.createElement("li");
+        li.innerHTML = Number(NUM1.value) + Number(NUM2.value);
+        test2.appendChild(li);
+        NUM1.value = "";
+        NUM2.value = "";
+      }
+    </script>
+  </body>
+</html>
