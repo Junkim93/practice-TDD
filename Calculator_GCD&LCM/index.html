@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>TEST</title>
+  </head>
+  <body>
+    <form>
+      <label>
+        숫자1:
+        <input type="text" id="num1" />
+      </label>
+      <label>
+        숫자2:
+        <input type="text" id="num2" />
+      </label>
+      <input class="btn" type="button" value="submit" />
+    </form>
+    <div class="output">
+      <label for="GCD">
+        최대공약수:
+        <input type="text" id="GCD" readonly />
+      </label>
+      <label for="LCM">
+        최소공배수:
+        <input type="text" id="LCM" readonly />
+      </label>
+    </div>
+
+    <script src="src/App.js"></script>
+    <script>
+      const firstNum = document.getElementById("num1");
+      const secondNum = document.getElementById("num2");
+      const submitBtn = document.querySelector(".btn");
+      const outputGCD = document.querySelector("#GCD");
+      const outputLCM = document.querySelector("#LCM");
+      const numArr = [];
+
+      function handleInputNum() {
+        numArr.splice(0, 0, Number(firstNum.value), Number(secondNum.value));
+        init();
+      }
+
+      submitBtn.addEventListener("click", handleInputNum);
+
+      const init = () => {
+        const maxNum = App.calcLowestValue(numArr[0], numArr[1]);
+        const GCD = App.calcGreatCommonDivisor(numArr[0], numArr[1], maxNum);
+        const LCM = App.calcLeastCommonMultiple(numArr[0], numArr[1], GCD);
+
+        outputGCD.value = GCD;
+        outputLCM.value = LCM;
+        numArr.length = 0;
+      };
+    </script>
+
+    <script></script>
+  </body>
+</html>
