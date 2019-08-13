@@ -1,0 +1,21 @@
+body {
+  margin-top: 100px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+input {
+  width: 50px;
+}
+
+.output {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.output #GCD {
+  margin-bottom: 10px;
+}
