@@ -1,0 +1,41 @@
+@font-face {
+  font-family: "DungGeunMo";
+  src: url("https://fixelfont.s3.ap-northeast-2.amazonaws.com/DungGeunMo.woff");
+}
+
+body,
+input,
+button {
+  font-family: "DungGeunMo", cursive;
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
+  height: 100%;
+}
+
+.header__title {
+  font-size: 50px;
+  color: #edc40d;
+  margin-bottom: 10px;
+}
+
+.form__word-add {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.body__word-list {
+  margin-top: 20px;
+  width: 500px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.word-list__li:hover {
+  color: orange;
+}

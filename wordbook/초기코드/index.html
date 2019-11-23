@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./reset.css" />
+    <link
+      href="https://unpkg.com/nes.css@latest/css/nes.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Word Book</title>
+  </head>
+  <body>
+    <div class="home">
+      <header class="header__title">
+        <h1>HAPPY WORDBOOK</h1>
+      </header>
+      <div class="body__word-book">
+        <form class="form__search">
+          <input
+            type="text"
+            class="nes-input input__search"
+            placeholder="찾고 싶은 단어를 입력해주세요"
+            required
+          />
+        </form>
+
+        <form class="form__add-word">
+          <input class="word" type="text" placeholder="단어" required />
+          <input class="meaning" type="text" placeholder="뜻" required />
+          <button class="click-btn">등록</button>
+        </form>
+      </div>
+
+      <ul class="word-list"></ul>
+    </div>
+    <script>
+      const name = document.querySelector('.word');
+      const meaning = document.querySelector('.meaning');
+      const clickBtn = document.querySelector('.click-btn');
+      const wordList = document.querySelector('.word-list');
+
+      const words = [];
+
+      clickBtn.addEventListener('click', init);
+      loadWordList();
+
+      function checkValidation() {
+        return name.value && meaning.value;
+      }
+
+      function init() {
+        event.preventDefault();
+        if (checkValidation()) {
+          const word = getInputData();
+          saveWord(word);
+          saveWordOnLocal(word);
+          updateView(word);
+          initInputData();
+        }
+      }
+
+      function loadWordList() {
+        const keys = getStorageKeys();
+        const loadedWords = loadWordsOnLocal(keys);
+        loadedWords.forEach(el => {
+          words.push(el);
+          updateView(el);
+        });
+      }
+
+      function toggleWord(e) {
+        const word = words[e.target.key];
+        if (word.status === 'name') {
+          e.target.innerText = word.meaning;
+          word.status = 'meaning';
+        } else {
+          e.target.innerText = word.name;
+          word.status = 'name';
+        }
+      }
+
+      function updateView(data) {
+        const word = document.createElement('li');
+        word.setAttribute('class', 'word-li');
+        word.addEventListener('click', toggleWord);
+        word.key = data.index;
+        word.innerText = data.name;
+        wordList.appendChild(word);
+      }
+
+      function loadWordsOnLocal(arr) {
+        return arr.map((el, i) => {
+          return (el = JSON.parse(this.localStorage.getItem(i)));
+        });
+      }
+
+      function saveWord(word) {
+        words.push(word);
+      }
+
+      function saveWordOnLocal(word) {
+        const index = window.localStorage.length;
+        window.localStorage.setItem(index, JSON.stringify(word));
+      }
+
+      function initInputData() {
+        name.value = '';
+        meaning.value = '';
+      }
+
+      function getInputData() {
+        const inputData = {
+          name: name.value,
+          meaning: meaning.value,
+          index: window.localStorage.length,
+          status: 'name'
+        };
+        return inputData;
+      }
+
+      function getStorageKeys() {
+        return Object.keys(window.localStorage);
+      }
+
+      const searchInput = document.querySelector('.input__search');
+
+      searchInput.addEventListener('keypress', searchWord);
+
+      function searchWord(e) {
+        if (e.key === 'Enter') {
+          event.preventDefault();
+          const inputVal = searchInput.value;
+          const searchedWord = words.filter(el => {
+            return inputVal === el.name;
+          });
+          while (wordList.firstChild) {
+            wordList.removeChild(wordList.firstChild);
+          }
+          searchedWord.forEach(el => updateView(el));
+        }
+      }
+    </script>
+  </body>
+</html>

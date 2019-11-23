@@ -1,0 +1,33 @@
+{
+  "name": "jun",
+  "jest": {
+    "setupFiles": [
+      "jest-localstorage-mock"
+    ]
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "jun",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon --exec babel-node server.js --delay 2",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.6.4",
+    "@babel/core": "^7.6.4",
+    "@babel/node": "^7.6.3",
+    "@babel/preset-env": "^7.6.3",
+    "jest": "^24.9.0",
+    "jest-localstorage-mock": "^2.4.0",
+    "nodemon": "^1.19.4"
+  },
+  "dependencies": {
+    "core-js": "^3.3.6",
+    "express": "^4.17.1",
+    "milsymbol": "^2.0.0",
+    "morgan": "^1.9.1",
+    "nes.css": "^2.2.1",
+    "path": "^0.12.7"
+  }
+}

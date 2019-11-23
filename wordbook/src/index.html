@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./reset.css" />
+    <link
+      href="https://unpkg.com/nes.css@latest/css/nes.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Word Book</title>
+  </head>
+  <body>
+    <div class="home">
+      <header class="header__title">
+        <h1>HAPPY WORDBOOK</h1>
+      </header>
+      <div class="body__word">
+        <!-- <form class="form__search">
+          <input
+            type="text"
+            class="nes-input input__search"
+            placeholder="찾고 싶은 단어를 입력해주세요"
+            required
+          />
+        </form> -->
+
+        <form class="form__word-add">
+          <input
+            class="form__word-add-name"
+            type="text"
+            placeholder="단어"
+            required
+          />
+          <input
+            class="form__word-add-meaning"
+            type="text"
+            placeholder="뜻"
+            required
+          />
+          <button class="form__word-add-btn">등록</button>
+        </form>
+      </div>
+
+      <ul class="body__word-list"></ul>
+    </div>
+  </body>
+  <script type="module" src="main.js"></script>
+</html>
