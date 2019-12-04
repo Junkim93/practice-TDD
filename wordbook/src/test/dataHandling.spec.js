@@ -1,7 +1,7 @@
 import handleData from "../logic/dataHandling";
 
 describe("handleData에", () => {
-  let ds = handleData();
+  let hd = handleData();
 
   describe("setData(val, val2)", () => {
     it("주입 받은 값이 입력된 객체를 반환한다.", () => {
@@ -15,7 +15,7 @@ describe("handleData에", () => {
         status: "name" || "meaning"
       };
 
-      expect(ds.setData(name, meaning)).toEqual(expected);
+      expect(hd.setData(name, meaning)).toEqual(expected);
     });
   });
 
@@ -23,7 +23,7 @@ describe("handleData에", () => {
     it("주입받은 값의 길이를 반환한다.", () => {
       const arr = [1, 2, 3, 4, 5];
 
-      expect(ds.getLength(arr)).toBe(5);
+      expect(hd.getLength(arr)).toBe(5);
     });
   });
 
@@ -32,7 +32,7 @@ describe("handleData에", () => {
       const obj = { 0: "a", 1: "b", 2: "c" };
       const expected = ["0", "1", "2"];
 
-      expect(ds.getObjKeys(obj)).toStrictEqual(expected);
+      expect(hd.getObjKeys(obj)).toStrictEqual(expected);
     });
   });
 
@@ -59,7 +59,7 @@ describe("handleData에", () => {
         return expected[index];
       };
 
-      expect(ds.getItemList(indexArr, fn)).toEqual(expected);
+      expect(hd.getItemList(indexArr, fn)).toEqual(expected);
     });
   });
 });
