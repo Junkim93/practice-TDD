@@ -10,6 +10,7 @@
   "author": "jun",
   "license": "MIT",
   "scripts": {
+    "build": "webpack -w",
     "start": "nodemon --exec babel-node server.js --delay 2",
     "test": "jest"
   },
@@ -17,10 +18,14 @@
     "@babel/cli": "^7.6.4",
     "@babel/core": "^7.6.4",
     "@babel/node": "^7.6.3",
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
     "@babel/preset-env": "^7.6.3",
+    "babel-loader": "^8.0.6",
     "jest": "^24.9.0",
     "jest-localstorage-mock": "^2.4.0",
-    "nodemon": "^1.19.4"
+    "nodemon": "^1.19.4",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
   },
   "dependencies": {
     "core-js": "^3.3.6",
