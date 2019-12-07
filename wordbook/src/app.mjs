@@ -1,14 +1,7 @@
-import {
-  saveInputWord,
-  loadWordList,
-  getWordList
-} from './logics/dataService.mjs'
-
+import { addWordEvent } from './events/addWordEvent.mjs'
 import inputWordView from './views/inputWordView.mjs'
 
 export const app = {
-  saveInputWord,
-  loadWordList,
-  getWordList,
+  addWordEvent,
   inputWordView
 }
