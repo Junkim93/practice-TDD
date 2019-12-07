@@ -1,26 +1,29 @@
-function inputWordView(options, fn) {
+function inputWordView(options) {
   const view = {
     updateView(obj) {
       if (obj && Object.prototype.toString.call(obj) !== '[object Object]') {
         throw Error('Not Object')
       }
-      options.updateEl.innerHTML = obj.name
-      options.updateEl.key = obj.index
-      // options.updateEl.addEventListener('click', toggleFn)
-      options.parentEl.appendChild(options.updateEl)
+      const updateEl = document.createElement('li')
+      updateEl.innerHTML = obj.name
+      updateEl.key = obj.index
+      options.wordListEl.appendChild(updateEl)
     },
 
-    initView(arr) {
+    loadView(arr) {
       if (arr && Object.prototype.toString.call(arr) !== '[object Array]') {
         throw Error('Not Array')
       }
       arr.forEach(word => {
         this.updateView(word)
       })
+    },
+
+    initView(dataEls) {
+      dataEls.nameEl.value = ''
+      dataEls.meaningEl.value = ''
     }
   }
-
-  options.triggerEl.addEventListener('click', view.updateView())
 
   return view
 }

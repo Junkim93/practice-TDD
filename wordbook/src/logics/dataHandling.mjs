@@ -1,36 +1,30 @@
-import dataStorage from './dataStorage.mjs'
-
-const handleData = () => {
-  return {
-    setData(name, meaning) {
-      const data = {
-        index: localStorage.length,
-        name: name,
-        meaning: meaning,
-        status: 'name' || 'meaning'
-      }
-
-      return data
-    },
-
-    getLength(val) {
-      return val.length
-    },
-
-    getObjKeys(obj) {
-      return Object.keys(obj)
-    },
-
-    getItemList(indexArr, fn) {
-      const itemList = indexArr.reduce((acc, curr) => {
-        const value = fn(curr)
-        acc.push(value)
-        return acc
-      }, [])
-
-      return itemList
-    }
+const setData = (name, meaning) => {
+  const data = {
+    index: localStorage.length,
+    name: name,
+    meaning: meaning,
+    status: 'name' || 'meaning'
   }
+
+  return data
 }
 
-export default handleData
+const getLength = val => {
+  return val.length
+}
+
+const getObjKeys = obj => {
+  return Object.keys(obj)
+}
+
+const getItemList = (indexArr, fn) => {
+  const itemList = indexArr.reduce((acc, curr) => {
+    const value = fn(curr)
+    acc.push(value)
+    return acc
+  }, [])
+
+  return itemList
+}
+
+export { setData, getLength, getObjKeys, getItemList }
