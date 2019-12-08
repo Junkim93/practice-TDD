@@ -9,10 +9,6 @@ const dataStorage = () => {
         throw Error(this.errorMessages.dataTypeError)
       }
 
-      if (data.index !== Number && 0) {
-        throw Error(this.errorMessages.indexNullError)
-      }
-
       window.localStorage.setItem(data.index, JSON.stringify(data))
     },
 
@@ -34,7 +30,6 @@ const dataStorage = () => {
     },
 
     errorMessages: {
-      indexNullError: '데이터의 인덱스 번호를 주입하지 않았습니다.',
       dataNullError: '데이터를 주입하지 않았습니다.',
       dataTypeError: '데이터의 타입이 객체가 아닙니다.'
     }
