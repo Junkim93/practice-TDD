@@ -1,16 +1,16 @@
-import { subscribe } from './dataService.mjs'
+import { subscribe, dataService } from './dataService.mjs'
+import { options } from './options.mjs'
+import { handleToggle } from './eventTrigger.mjs'
 
-const options = {
-  wordListEl: document.querySelector('.body__word-list')
-}
-
-export const updateView = options => {
+export const updateView = (options, fn) => {
   const view = {
     updateView(obj) {
       if (obj && Object.prototype.toString.call(obj) !== '[object Object]') {
         throw Error('Not Object')
       }
       const updateEl = document.createElement('li')
+
+      if (fn) updateEl.addEventListener('click', fn)
       updateEl.innerHTML = obj.name
       updateEl.key = obj.index
       options.wordListEl.appendChild(updateEl)
@@ -25,15 +25,20 @@ export const updateView = options => {
       })
     },
 
-    initView(dataEls) {
-      dataEls.nameEl.value = ''
-      dataEls.meaningEl.value = ''
+    initInputView() {
+      options.nameEl.value = ''
+      options.meaningEl.value = ''
     }
   }
+
+  const initView = (() => {
+    dataService.loadWordList()
+    view.loadView(dataService.getWordList())
+  })()
 
   return view
 }
 
-const view = updateView(options)
-
+const view = updateView(options, handleToggle)
 subscribe(view.updateView)
+subscribe(view.initInputView)

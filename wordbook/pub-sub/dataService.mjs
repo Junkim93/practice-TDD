@@ -1,14 +1,15 @@
+import { getObjKeys, getItemList, getData } from './dataServiceLogic.mjs'
+
 const changeListener = []
 
 export const subscribe = cbFn => {
   changeListener.push(cbFn)
 }
 
-const publish = word => {
-  changeListener.forEach(changeListener => changeListener(word))
+const publish = data => {
+  changeListener.forEach(changeListener => changeListener(data))
 }
-
-export const dataService = () => {
+export const dataService = (() => {
   const wordList = []
 
   return {
@@ -32,9 +33,15 @@ export const dataService = () => {
 
     getWordList() {
       return wordList
+    },
+
+    loadWordList() {
+      if (localStorage.length === 0) return
+      else {
+        const indexWords = getObjKeys(localStorage)
+        const words = getItemList(indexWords, getData)
+        words.forEach(el => wordList.push(el))
+      }
     }
   }
-}
-
-// 저장하는 액션과 화면에 뿌려주는 액션을 구분하기
-// 근데 저장하는 액션이 실행됐을 때, 화면에서 알아차릴 수 있어야함
+})()
