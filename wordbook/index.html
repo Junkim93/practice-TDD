@@ -18,14 +18,14 @@
         <h1>HAPPY WORDBOOK</h1>
       </header>
       <div class="body__word">
-        <!-- <form class="form__search">
+        <form class="form__search">
           <input
             type="text"
-            class="nes-input input__search"
+            class="nes-input form__word-search"
             placeholder="찾고 싶은 단어를 입력해주세요"
             required
           />
-        </form> -->
+        </form>
 
         <form class="form__word-add">
           <input
@@ -47,7 +47,7 @@
       <ul class="body__word-list"></ul>
     </div>
   </body>
-  <script type="module" src="pub-sub/addEvent.mjs"></script>
+  <script type="module" src="pub-sub/eventTrigger.mjs"></script>
   <script type="module" src="pub-sub/dataService.mjs"></script>
   <script type="module" src="pub-sub/updateView.mjs"></script>
 </html>
