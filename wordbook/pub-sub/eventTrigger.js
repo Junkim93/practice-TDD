@@ -1,5 +1,5 @@
 import { dataService } from './dataService.mjs'
-import { options } from './options.mjs'
+import { options } from './options.js'
 
 export const handleToggle = e => {
   const words = dataService.getWordList()
