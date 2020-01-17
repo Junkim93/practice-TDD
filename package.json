@@ -4,11 +4,13 @@
   "description": "A Reop For practicing TDD with Javascript",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "cypress:open": "cypress open"
   },
   "author": "Jun Kim",
   "license": "ISC",
   "devDependencies": {
+    "cypress": "^3.8.2",
     "jest": "^24.8.0"
   },
   "dependencies": {
