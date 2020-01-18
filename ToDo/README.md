@@ -1,28 +1,5 @@
 # Todo list
 
-## Scenario1
-Given: Input창에 텍스트를 입력했을 때,
-
-When: 추가 버튼을 누르면,
-
-Then: Input창 밑에 입력한 텍스트가 추가된다.
-
-## Scenario2
-Given: LocalStorage에 데이터가 있으면,
-
-When: 초기 화면에 진입했을 때,
-
-Then: LocalStorage에 저장된 데이터가 화면에 나타난다.
-
-## Scenario3
-Given: LocalStorage에 데이터가 없으면,
-
-When: 초기 화면에 진입했을 때,
-
-Then: 화면에 어떤 데이터도 나타나지 않는다.
-
----
-
 ### 생각할 거리
 **어떻게 분리할지**
 - Data Service/ 로컬 스토리지
