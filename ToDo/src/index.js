@@ -57,14 +57,46 @@ listRenderer.render({
   className: 'todo__list',
 })
 
-const contentsRenderer = new Renderer(document.querySelector('.todo__list'))
-contentsRenderer.view = new (class extends View {
+const deleteBtnRenderer = new Renderer()
+deleteBtnRenderer.view = new (class extends View {
   #el
 
   getElement(data) {
-    this.#el = document.createElement('li')
-    this.#el.innerText = data.content
+    this.#el = document.createElement('button')
+    this.#el.innerText = `${data.text}`
+    this.#el.className = `${data.className}`
+    this.#el.addEventListener('click', data.deleteToDo)
     return this.#el
+  }
+})()
+
+const contentsRenderer = new Renderer(document.querySelector('.todo__list'))
+contentsRenderer.view = new (class extends View {
+  #toDo
+  #deleteBtn
+
+  getElement(data) {
+    this.#toDo = document.createElement('li')
+    this.#toDo.innerText = data.content
+    this.#toDo.index = data.index
+    this.#deleteBtn = document.createElement('button')
+    this.#deleteBtn.innerText = '❌'
+    this.#deleteBtn.index = data.index
+    this.#deleteBtn.className = 'todo__btn-delete'
+    const deleteToDo = value => {
+      const els = document.querySelectorAll('.todo__list > li')
+      for (const el in els) {
+        if (els.hasOwnProperty(el)) {
+          if (els[el].index === value.toElement.index) {
+            els[el].remove()
+            localStorage.removeItem(els[el].index)
+          }
+        }
+      }
+    }
+    this.#deleteBtn.addEventListener('click', deleteToDo)
+    this.#toDo.appendChild(this.#deleteBtn)
+    return this.#toDo
   }
 })()
 
@@ -112,33 +144,3 @@ const smallDB = class {
 const dataService = new smallDB()
 dataService.initToDoItems()
 contentsRenderer.render(dataService.items)
-
-// const deleteBtnRenderer = new Renderer()
-// deleteBtnRenderer.view = new (class extends View {
-//   #el
-
-//   getElement(data) {
-//     this.#el = document.createElement('button')
-//     this.#el.innerText = `${data.text}`
-//     this.#el.className = `${data.className}`
-//     this.#el.addEventListener('click', data.deleteToDo)
-//     return this.#el
-//   }
-// })()
-
-// deleteBtnRenderer.render({
-//   text: '❌',
-//   className: 'todo__btn-delete',
-//   deleteToDo() {
-//     // dom 리스트 찾아서 해당 인덱스 삭제
-//     // 해당하는 노드를 찾아서 지워준다
-//     // li > (text btn)
-//     // <li>text<btn></btn></li>
-//   }
-// })
-
-// x버튼이 담기려면 어떻게 해야할까
-// add 버튼한테 책임을 위임한다
-// Ul > li - btn / li - btn
-// 화면을 렌더할때도 x 버튼이 있어야한다
-// delete 버튼 메서드를 추가하자

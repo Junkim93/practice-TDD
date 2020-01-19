@@ -71,11 +71,9 @@ describe('To Do App Test', () => {
       .first()
       .focus()
       .type('delete test')
-    cy.get('button').click()
+    cy.get('.todo__btn-add').click()
 
-    cy.get('.todo__list > li')[0]
-      .get('button')
-      .click()
+    cy.get('.todo__btn-delete').click()
 
     cy.get('.todo__list > li').should('not.exist')
   })
