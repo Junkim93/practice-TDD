@@ -14,7 +14,7 @@ describe('To Do App Test', () => {
       .focus()
       .type('todo test')
 
-    cy.get('button').click()
+    cy.get('.todo__btn-add').click()
 
     cy.get('.todo__list > li').should($lis => {
       expect($lis).to.have.length(1)
@@ -33,14 +33,14 @@ describe('To Do App Test', () => {
       .focus()
       .type('local storage test')
 
-    cy.get('button').click()
+    cy.get('.todo__btn-add').click()
 
     cy.get('input')
       .first()
       .focus()
       .type('local storage test2')
 
-    cy.get('button').click()
+    cy.get('.todo__btn-add').click()
 
     cy.reload()
 
